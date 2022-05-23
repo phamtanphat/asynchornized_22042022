@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 
 import 'demo1.dart';
+import 'demo2.dart';
 void main(List<String> arguments) {
   var option = BaseOptions(
     connectTimeout: 30000,
@@ -11,9 +12,9 @@ void main(List<String> arguments) {
   );
   var dio = Dio(option);
 
-  dio.get('KhoaPhamTraining/json/tien/demo1.json')
-  .then((response) => Demo1.fromJson(response.data))
-  .then((value) => print(value.monhoc))
+  dio.get('KhoaPhamTraining/json/tien/demo2.json')
+  .then((response) => Demo2.fromJson(response.data))
+  .then((value) => print(value.danhsach![0].khoahoc))
   .catchError((error) => print(error));
 
 }
