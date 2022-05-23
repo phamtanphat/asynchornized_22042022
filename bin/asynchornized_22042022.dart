@@ -1,24 +1,15 @@
+import 'package:dio/dio.dart';
 void main(List<String> arguments) {
+  var option = BaseOptions(
+    connectTimeout: 30000,
+    receiveTimeout: 30000,
+    baseUrl: 'https://khoapham.vn/'
+  );
+  var dio = Dio(option);
 
-  // var future = Future.delayed(Duration(seconds: 1), (){
-  //    throw Exception("Loi");
-  // });
-  //
-  // future.then((value){
-  //   print(value);
-  // })
-  // .catchError((error){
-  //   print("Error $error");
-  // });
-  handle();
-}
-
-void handle() async{
-  try{
-    var data = await Future.delayed(Duration(seconds: 1), () => 3);
-    var result = await Future.delayed(Duration(seconds: 1) , () => throw Exception("Loi"));
-  }catch(e){
-    print(e.toString());
-  }
+  dio.get('KhoaPhamTraining/json/tien/demo1.json')
+  .then((response) => print(response))
+  .catchError((error) => print(error));
 
 }
+
