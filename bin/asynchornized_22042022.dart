@@ -40,16 +40,22 @@ void main(List<String> arguments) {
   //   print(event);
   // });
   
-  var stringController = StreamController<String>();
-  
-  // Cap nhat du lieu
-  stringController.sink.add('hello');
-
-  stringController.stream.listen((event) {
-    print(event);
+  var stream = Stream.periodic(Duration(seconds: 1), (index){
+    return '$index';
   });
 
-  Future.delayed(Duration(seconds: 2), () {
-    stringController.sink.add('Updated');
+  var subscription = stream.listen((event) {
+      print(event);
   });
+
+  Future.delayed(Duration(seconds: 3), (){
+    subscription.pause();
+  });
+
+  Future.delayed(Duration(seconds: 5), (){
+    subscription.resume();
+  });
+
+
+
 }
