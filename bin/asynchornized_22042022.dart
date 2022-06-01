@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:dio/dio.dart';
 import 'apiService.dart';
 
@@ -37,4 +39,17 @@ void main(List<String> arguments) {
   // stream.take(20).listen((event) {
   //   print(event);
   // });
+  
+  var stringController = StreamController<String>();
+  
+  // Cap nhat du lieu
+  stringController.sink.add('hello');
+
+  stringController.stream.listen((event) {
+    print(event);
+  });
+
+  Future.delayed(Duration(seconds: 2), () {
+    stringController.sink.add('Updated');
+  });
 }
