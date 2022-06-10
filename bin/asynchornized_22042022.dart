@@ -58,26 +58,43 @@ void main(List<String> arguments) {
   // });
 
 
-  var behaviorSubject = BehaviorSubject<String>();
+  // var behaviorSubject = BehaviorSubject<String>();
+  //
+  // // Lần 1
+  // behaviorSubject.listen((value) {
+  //   print('Listen 1 $value');
+  // });
+  //
+  // behaviorSubject.add('1');
+  // behaviorSubject.add('2');
+  // behaviorSubject.add('3');
+  // behaviorSubject.add('4');
+  //
+  // // Lần 2
+  // // Lần 1
+  // behaviorSubject.listen((value) {
+  //   print('Listen 2 $value');
+  // });
+  //
+  // behaviorSubject.add('5');
+  // behaviorSubject.add('6');
 
-  // Lần 1
-  behaviorSubject.listen((value) {
-    print('Listen 1 $value');
+  var publishSubject = PublishSubject<String>();
+
+  publishSubject.listen((value) {
+    print('Listen1 : $value');
   });
 
-  behaviorSubject.add('1');
-  behaviorSubject.add('2');
-  behaviorSubject.add('3');
-  behaviorSubject.add('4');
+  publishSubject.add('1');
+  publishSubject.add('2');
+  publishSubject.add('3');
+  publishSubject.add('4');
+  publishSubject.add('5');
 
-  // Lần 2
-  // Lần 1
-  behaviorSubject.listen((value) {
-    print('Listen 2 $value');
+  publishSubject.listen((value) {
+    print('Listen2 : $value');
   });
 
-  behaviorSubject.add('5');
-  behaviorSubject.add('6');
-
-
+  publishSubject.add('6');
+  publishSubject.add('7');
 }
