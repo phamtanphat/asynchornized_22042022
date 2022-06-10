@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:dio/dio.dart';
+import 'package:rxdart/subjects.dart';
 import 'apiService.dart';
 
 void main(List<String> arguments) {
@@ -40,22 +41,43 @@ void main(List<String> arguments) {
   //   print(event);
   // });
   
-  var stream = Stream.periodic(Duration(seconds: 1), (index){
-    return '$index';
+  // var stream = Stream.periodic(Duration(seconds: 1), (index){
+  //   return '$index';
+  // });
+  //
+  // var subscription = stream.listen((event) {
+  //     print(event);
+  // });
+  //
+  // Future.delayed(Duration(seconds: 3), (){
+  //   subscription.pause();
+  // });
+  //
+  // Future.delayed(Duration(seconds: 5), (){
+  //   subscription.resume();
+  // });
+
+
+  var behaviorSubject = BehaviorSubject<String>();
+
+  // Lần 1
+  behaviorSubject.listen((value) {
+    print('Listen 1 $value');
   });
 
-  var subscription = stream.listen((event) {
-      print(event);
+  behaviorSubject.add('1');
+  behaviorSubject.add('2');
+  behaviorSubject.add('3');
+  behaviorSubject.add('4');
+
+  // Lần 2
+  // Lần 1
+  behaviorSubject.listen((value) {
+    print('Listen 2 $value');
   });
 
-  Future.delayed(Duration(seconds: 3), (){
-    subscription.pause();
-  });
-
-  Future.delayed(Duration(seconds: 5), (){
-    subscription.resume();
-  });
-
+  behaviorSubject.add('5');
+  behaviorSubject.add('6');
 
 
 }
